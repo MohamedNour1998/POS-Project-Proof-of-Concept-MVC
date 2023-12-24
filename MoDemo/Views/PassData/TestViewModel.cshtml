@@ -1,0 +1,25 @@
+﻿@model MoDemo.ViewModel.EmployeeWithMessageAndBranchlistVM
+@{
+    ViewData["Title"] = "TestViewModel";
+}
+
+<h1>TestViewModel</h1>
+
+<h2>@Model.EmpName</h2>
+<br />
+
+@*view data*@
+
+<h3>message : @Model.Message</h3>
+<br />
+<h4>temp :@Model.temp</h4>
+<br />
+<select class="form-control">
+    @foreach (var item in Model.branch)
+    {
+        <option>@item</option>
+    }
+</select>
+
+
+<h4>@(Model.temp+10)</h4>

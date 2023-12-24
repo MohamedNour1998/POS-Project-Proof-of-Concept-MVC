@@ -1,0 +1,37 @@
+﻿@model Department
+@{
+    ViewData["Title"] = "New";
+}
+
+<h1>New</h1>
+
+<form method="post" asp-controller="Department" asp-action="SaveNew">
+    <div>
+                                    @*pure HTML
+         <label>Name</label>
+        <input type="text" class="form-control" name="Name" id="Name" value="@Model.Name" />*@
+
+                                  @*HTML Helper*@
+        @*@Html.TextBox("Name")   lossly type*@
+        @*@Html.LabelFor(d => d.Name)
+        @Html.TextBoxFor(s => s.Name, new { style = "color:red", @class = "form-control" })*@
+        @*@Html.EditorFor(s=>s.Name)*@ @*that generate the prop and take the type auto*@
+
+                                  @*Tag Helper*@
+        <label asp-for="Name">Name</label>
+        <input type="text" class="form-control" asp-for="Name"/>
+    </div>
+    <br />
+
+    <div>
+        <label>Manager Name</label>
+        <input type="text" class="form-control" name="ManagerName" id="ManagerName" value="@Model.ManagerName" />
+    </div>
+    <br />
+
+    <center>
+        <input type="submit" value="Add" class="btn-success" />
+        <a asp-controller="Department" asp-action="Index" class="btn btn-primary">BAck To Department</a>
+        @*@Html.ActionLink("Back to Dept Using HTML Helper","Index","Department",new {deptId=1 })*@ @*for HTML Helper*@
+    </center>
+</form>

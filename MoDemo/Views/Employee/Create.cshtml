@@ -1,0 +1,62 @@
+﻿@model Employee
+@{
+    ViewData["Title"] = "Create";
+
+    SelectList deptlist = new SelectList(ViewBag.DeptList, "Id", "Name");
+}
+
+<h1>Create</h1>
+
+<form class="form-group" asp-controller="Employee" asp-action="Create" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div>
+        <label asp-for="Name"></label>
+        <input class="form-control" asp-for="Name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <br />
+
+    <div>
+        <label asp-for="Salary"></label>
+        <input class="form-control" asp-for="Salary" />
+        <span asp-validation-for="Salary" class="text-danger"></span>
+    </div>
+    <br />
+
+    <div>
+        <label asp-for="Address"></label>
+        <input class="form-control" asp-for="Address" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+    <br />
+
+    <div>
+        <label asp-for="Image"></label>
+        <input class="form-control" asp-for="Image" />
+        <span asp-validation-for="Image" class="text-danger"></span>
+    </div>
+    <br />
+
+    <div>
+        <label asp-for="Dept_Id"></label>
+        @*<input class="form-control" asp-for="Dept_Id"/>*@
+        <select class="form-control" asp-for="Dept_Id" asp-items="deptlist">
+            <option>Choose Department</option>
+        </select>
+    </div>
+    <br />
+    <br />
+    <center>
+        <input type="submit" value="save" class="btn btn-primary" />
+        <input type="reset" value="cancel" class="btn btn-danger" />
+    </center>
+</form>
+
+
+@*work with tag helper only*@
+@section Scripts{
+
+    @*<partial name="_ValidationScriptsPartial" />*@
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

@@ -1,0 +1,47 @@
+﻿@model List<Employee>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<a asp-controller="Employee" asp-action="Create" class="btn btn-primary">Create New Employee</a>
+<br />
+<div style="border:3px solid blue" id="EmployeeDetails">
+
+</div>
+<table class="table table-bordered table-hover">
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td><a href="#" onclick="GetData(@item.Id)">@item.Name</a></td>
+        @*<td><partial name="_EmployeeCardPartial" model="item"/></td>*@
+        <td><a asp-controller="Employee" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"> Update</a></td>
+    </tr>
+    }
+</table>
+
+@section Scripts
+{
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    function GetData(EmpId) {
+
+        console.log(EmpId);
+        event.preventDefault();
+
+        //Ajax call jquery and when using ajax should use Action return partial view
+        $.ajax({
+            url: "/Employee/DetailsUsingPartial/" + EmpId,
+            /*data: { "Id": EmpId },*/ //use when want to send more than one parameter
+             success: function (result) {
+                document.getElementById("EmployeeDetails").innerHTML=result;
+            }
+        });
+    }
+    function fun1() {
+        var id =@Model.FirstOrDefault().Id;
+    }
+</script>
+}

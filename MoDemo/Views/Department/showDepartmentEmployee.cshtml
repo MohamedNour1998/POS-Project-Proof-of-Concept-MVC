@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewData["Title"] = "showDepartmentEmployee";
+    SelectList deptlist = new SelectList(Model, "Id", "Name");
+}
+
+<h1>showDepartmentEmployee</h1>
+
+<select name="dept" id="dept" asp-items="deptlist" class="form-control" onchange="GetEmployee">
+    <option>Choose Department</option>
+</select>
+
+<select name="emps" id="emps" class="form-control">
+
+</select>
+
+@section Scripts{ 
+<script>
+    function GetEmployee() {
+        var drptid = document.getElementById("dept").Value; //for get id from dept
+        $.ajax({
+            url: "/Department/GetEmployeeByDept",
+            data: { "deptId": drptid }, //use when want to send more than one parameter
+            success: function (result) {
+                document.getElementById("emps").innerHTML = "";//clear select
+                for (let emp of result) {
+                    document.getElementById("emps").innerHTML+=
+                        "<option value='" + emp.id+"'>" + emp.name+"</option>";
+                }
+            }
+        });
+    }
+</script>
+}

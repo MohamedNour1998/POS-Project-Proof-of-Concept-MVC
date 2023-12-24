@@ -1,0 +1,10 @@
+﻿@model Employee
+
+
+<div class="card img-fluid"  style="height:200px"  >
+    <div class="card-img-overlay">
+        <h4 class="card-title">@Model.Name</h4>
+        <p class="card-text"> @Model.Address  - @Model.Salary</p>
+        <a asp-controller="Employee" asp-action="Details"  asp-route-id="@Model.Id"> See Profile </a>
+    </div>
+</div>
